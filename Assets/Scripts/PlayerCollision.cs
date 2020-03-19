@@ -5,7 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class PlayerCollision : MonoBehaviour
 {
-    
+    public Transform Player;
+
     public void OnCollisionEnter(Collision other) 
     {
         if (other.collider.name == "Goal"){
@@ -13,7 +14,8 @@ public class PlayerCollision : MonoBehaviour
         }
 
         if (other.collider.name == "Goal1"){
-            Application.Quit();
+            Debug.Log("Restart game");
+            SceneManager.LoadScene(0);
             }
         if (other.collider.name == "Enemy"){
             Debug.Log("Restart level");
@@ -27,5 +29,22 @@ public class PlayerCollision : MonoBehaviour
             Debug.Log("Restart level");
             SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
         }
-    }
+
+
+        if (other.collider.name == "DeathFloor"){
+            Debug.Log("Restart level");
+            SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+        }
+
+    /*void Update()
+    {
+        transform.position = Player.position + offset;
+
+        if (Player.transform.position.y < -6)
+        {
+            Debug.Log("Game Over");
+            SceneManager.LoadScene(SceneManager.GetActiveScene() .name);
+        }
+    }  */
+    } 
 }
